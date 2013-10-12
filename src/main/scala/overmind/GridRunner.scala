@@ -25,6 +25,8 @@ object GridRunner {
       case Daemon => "jstart"
       case Oneoff => "jsub"
     }
+    println("trying to run:")
+    println(s"$name with args $args")
     (runner :: "-cwd" :: name :: args.toList).!
   }
 }
@@ -35,6 +37,8 @@ object LocalRunner {
       case Daemon => "jstart"
       case Oneoff => "jsub"
     }
+    println("trying to run:")
+    println(s"$name with args $args")
     (name :: args.toList).!
   }
 }

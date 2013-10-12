@@ -42,8 +42,8 @@ class Overmind extends Actor {
 
   def spawnHive(address: String) {
     println("attempting to run a process, right...")
-    LocalRunner.run(Daemon, "start", "port")
-    //GridRunner.run(Daemon, "start", "port")
+    //LocalRunner.run(Daemon, "start", "port")
+    GridRunner.run(Daemon, "start", "port")
   }
 
 }
