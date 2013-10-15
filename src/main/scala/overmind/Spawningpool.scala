@@ -24,6 +24,8 @@ object Spawningpool {
 
   def main(args: Array[String]) {
     val l = args.toList
+    println(s"spawningpool started with arguments $args")
+    
     l match {
       case Nil => wakenOvermind
       case "hive" :: address :: Nil => wakenHive(address)

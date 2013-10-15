@@ -25,7 +25,7 @@ object Queen {
 }
 
 class Queen(overmindaddress : String) extends Actor {
-  val overmind = context.actorSelection(s"akka.tcp://overmindsystem@$overmindaddress/user/overmind")
+  val overmind = context.actorSelection(s"akka.tcp://$overmindaddress/user/overmind")
   def receive = {
     case "awaken" => overmind ! "hiveready"
     case "spawn" => {

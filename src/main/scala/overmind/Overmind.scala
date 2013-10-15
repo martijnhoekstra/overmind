@@ -19,17 +19,16 @@ package overmind
 
 import akka.actor.Actor
 import akka.actor.ActorRef
+import akka.actor.PoisonPill
 
 class Overmind extends Actor {
   val address : String = context.parent.path.root.address.hostPort
-  var queens : Set[ActorRef]= Set.empty
   def receive = {
     case "showoff" => {
       spawnHive(address)
       spawnHive(address)
     }
     case "hiveready" => {
-      queens += sender
       sender ! "spawn"
     }
     case "minionready" => {
@@ -37,11 +36,12 @@ class Overmind extends Actor {
     }
     case Compliance(action) => {
       println(s"hahaha! my minion complied with my command $action")
+      sender ! PoisonPill
     }
   }
 
   def spawnHive(address: String) {
-    println("attempting to run a process, right...")
+    println("attempting to run a process...")
     //LocalRunner.run(Daemon, "start", "port")
     GridRunner.run(Daemon, "target/start", address)
   }

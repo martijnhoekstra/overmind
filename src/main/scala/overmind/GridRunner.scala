@@ -27,7 +27,7 @@ object GridRunner {
     }
     println("trying to run:")
     println(s"$name with args $args")
-    (runner :: "-cwd" :: name :: args.toList).!
+    (runner :: "-cwd" :: "-mem 2G" :: name :: args.toList).!
   }
 }
 
